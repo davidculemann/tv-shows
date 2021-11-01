@@ -1,4 +1,5 @@
 import { Episode } from "./Episode";
+import episodes from "../episodes.json";
 
 export function EpisodeGallery(): JSX.Element {
   return (
@@ -9,7 +10,23 @@ export function EpisodeGallery(): JSX.Element {
         gridGap: 20,
       }}
     >
-      <Episode
+      <>
+        {episodes.map((episode) => (
+          <Episode
+            name={episode.name}
+            season={episode.season}
+            number={episode.number}
+            image={episode.image}
+            summary={episode.summary}
+          />
+        ))}
+      </>
+    </div>
+  );
+}
+
+/*
+<Episode
         name={"Winter is coming"}
         season={1}
         number={1}
@@ -37,9 +54,4 @@ export function EpisodeGallery(): JSX.Element {
           "An incident on the Kingsroad threatens Eddard and Robert's friendship. Jon and Tyrion travel to the Wall, where they discover that the reality of the Night's Watch may not match the heroic image of it."
         }
       />
-      <p>column 2</p>
-      <p>column 3</p>
-      <p>column 1</p>
-    </div>
-  );
-}
+      */

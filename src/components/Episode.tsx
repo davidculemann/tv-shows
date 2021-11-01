@@ -23,15 +23,19 @@ interface IEpisode {
 export function Episode(episodeProps: IEpisode): JSX.Element {
   return (
     <div style={episodeStyle}>
-      <h3>
+      <h2 style={{ textAlign: "center" }}>
         {episodeProps.name} -{" "}
         {episodeCode(episodeProps.season, episodeProps.number)}
-      </h3>
-      <img
-        src={episodeProps.image.medium}
-        alt={episodeProps.image.original}
-      ></img>
-      <>{episodeProps.summary}</>
+      </h2>
+      <div style={{ textAlign: "center" }}>
+        <img
+          src={episodeProps.image.medium}
+          alt={episodeProps.image.original}
+          width="90%"
+          height="auto"
+        ></img>
+      </div>
+      <p>{episodeProps.summary}</p>
     </div>
   );
 }
