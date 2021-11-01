@@ -1,4 +1,4 @@
-import { episodeStyle } from './EpisodeStyle'
+import { episodeStyle } from "./EpisodeStyle";
 
 interface IEpisode {
   // id: number;
