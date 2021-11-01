@@ -13,6 +13,7 @@ export function EpisodeGallery(): JSX.Element {
       <>
         {episodes.map((episode) => (
           <Episode
+            key={episode.name}
             name={episode.name}
             season={episode.season}
             number={episode.number}

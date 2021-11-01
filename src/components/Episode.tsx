@@ -1,5 +1,6 @@
 import { episodeStyle } from "./EpisodeStyle";
 import { episodeCode } from "../utils/episodeCode";
+import { summaryFix } from "../utils/summaryFix";
 
 interface IEpisode {
   // id: number;
@@ -35,7 +36,7 @@ export function Episode(episodeProps: IEpisode): JSX.Element {
           height="auto"
         ></img>
       </div>
-      <p>{episodeProps.summary}</p>
+      <p>{summaryFix(episodeProps.summary)}</p>
     </div>
   );
 }
