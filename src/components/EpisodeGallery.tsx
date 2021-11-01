@@ -9,14 +9,13 @@ export function EpisodeGallery(): JSX.Element {
         gridGap: 20,
       }}
     >
-      <p>episodes will go here</p>
-      <p>column 2</p>
-      <p>column 3</p>
-      <p>column 1</p>
-      <p>column 2</p>
-      <p>column 3</p>
-      <p>column 1</p>
       <Episode name="Winter is coming" />
+      <Episode name="Winter is coming" />
+      <Episode name="Winter is coming" />
+      <Episode name="Winter is coming" />
+      <p>column 2</p>
+      <p>column 3</p>
+      <p>column 1</p>
     </div>
   );
 }

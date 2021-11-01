@@ -1,3 +1,5 @@
+import { episodeStyle } from './EpisodeStyle'
+
 interface IEpisode {
   // id: number;
   // url: string;
@@ -19,8 +21,8 @@ interface IEpisode {
 
 export function Episode(episodeProps: IEpisode): JSX.Element {
   return (
-    <div>
-      <h2>S01E01</h2>
+    <div style={episodeStyle}>
+      <h3>S01E01</h3>
       <h2>{episodeProps.name}</h2>
     </div>
   );

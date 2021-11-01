@@ -1,3 +1,8 @@
 export function Header(): JSX.Element {
-  return <h1>Game of Thrones episodes</h1>;
+  const HeaderStyle: React.CSSProperties = {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: '50px'
+  }
+  return <h1 style={HeaderStyle}>Game of Thrones episodes</h1>;
 }
