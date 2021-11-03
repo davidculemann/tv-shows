@@ -20,9 +20,11 @@ export function EpisodeGallery(): JSX.Element {
             setSearch(event.target.value);
           }}
         />
-        &nbsp; <span style={{ fontSize: "13px" }}>showing{" "}
-          {episodes.filter((epi) => searchFilter(epi, search)).length} out of{" "}
-          {episodes.length} episodes</span>
+        &nbsp;{" "}
+        <span style={{ fontSize: "13px" }}>
+          showing {episodes.filter((epi) => searchFilter(epi, search)).length}{" "}
+          out of {episodes.length} episodes
+        </span>
       </div>
       <div
         style={{

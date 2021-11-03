@@ -1,4 +1,3 @@
-import { episodeStyle } from "./EpisodeStyle";
 import { episodeCode } from "../utils/episodeCode";
 import { summaryFix } from "../utils/summaryFix";
 
@@ -23,7 +22,7 @@ interface IEpisode {
 
 export function Episode(episodeProps: IEpisode): JSX.Element {
   return (
-    <div style={episodeStyle}>
+    <div className="episode">
       <h2 style={{ textAlign: "center" }}>
         {episodeProps.name} -{" "}
         {episodeCode(episodeProps.season, episodeProps.number)}
