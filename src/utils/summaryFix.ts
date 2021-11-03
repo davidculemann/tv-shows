@@ -1,6 +1,3 @@
 export function summaryFix(summary: string): string {
-  return summary
-    .replaceAll("<p>", "")
-    .replaceAll("</p>", "")
-    .replaceAll("<br>", "");
+  return summary.replace(/<p>/g, "").replace(/<\/p>/g, "").replace(/<br>/g, "");
 }
