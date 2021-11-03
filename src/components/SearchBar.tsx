@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export function SearchBar(): JSX.Element {
-  const [search, setSearch] = useState("a");
+  const [search, setSearch] = useState("");
   const SearchStyle: React.CSSProperties = {
     color: "white",
     fontSize: "20px",
