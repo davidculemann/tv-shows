@@ -1,0 +1,30 @@
+.episode {
+  color: white;
+  background-color: black;
+  width: auto;
+  height: auto;
+  padding: 10px;
+  margin: 10px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20;
+}
+
+.header {
+  color: white;
+  font-size: 50px;
+  text-align: center;
+}
+
+.footer {
+  color: white;
+  font-size: 15px;
+}
+
+.search {
+  color: white;
+  font-size: 20px;
+}

@@ -1,4 +1,3 @@
-# Simplified CRA starter
 # First commit for Netlify: https://academy-davidculemann-tv-shows.netlify.app/
 
 
