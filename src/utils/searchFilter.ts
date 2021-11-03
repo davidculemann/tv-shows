@@ -17,8 +17,7 @@ interface IEpisode {
   // _links: { self: { href: string } };
 }
 
-export const searchFilter =
-  (episode: IEpisode, search: string): boolean =>
-    episode.name.includes(search) ||
-    episode.summary.includes(search) ||
-    search === ""
+export const searchFilter = (episode: IEpisode, search: string): boolean =>
+  episode.name.includes(search) ||
+  episode.summary.includes(search) ||
+  search === "";
