@@ -4,6 +4,6 @@ interface FilterEpisode {
 }
 
 export const searchFilter = (episode: FilterEpisode, search: string): boolean =>
-  episode.name.includes(search) ||
-  episode.summary.includes(search) ||
+  episode.name.toLowerCase().includes(search.toLowerCase()) ||
+  episode.summary.toLowerCase().includes(search.toLowerCase()) ||
   search === "";
