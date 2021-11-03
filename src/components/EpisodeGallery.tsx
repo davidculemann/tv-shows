@@ -2,17 +2,16 @@ import { Episode } from "./Episode";
 import episodes from "../episodes.json";
 import { useState } from "react";
 import { searchFilter } from "../utils/searchFilter";
+import Select from 'react-select'
 
 export function EpisodeGallery(): JSX.Element {
   const [search, setSearch] = useState("");
-  const SearchStyle: React.CSSProperties = {
-    color: "white",
-    fontSize: "20px",
-  };
+  const options = episodes
 
   return (
     <>
-      <div style={SearchStyle}>
+      <div className="search">
+        <Select className="select" options={options} />
         Search episodes:&nbsp;
         <input
           value={search}
@@ -20,19 +19,11 @@ export function EpisodeGallery(): JSX.Element {
             setSearch(event.target.value);
           }}
         />
-        &nbsp;{" "}
-        <span style={{ fontSize: "13px" }}>
-          showing {episodes.filter((epi) => searchFilter(epi, search)).length}{" "}
-          out of {episodes.length} episodes
-        </span>
+        &nbsp; <span style={{ fontSize: "13px" }}>showing{" "}
+          {episodes.filter((epi) => searchFilter(epi, search)).length} out of{" "}
+          {episodes.length} episodes</span>
       </div>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gridGap: 20,
-        }}
-      >
+      <div className="gallery">
         <>
           {episodes
             .filter((epi) => searchFilter(epi, search))
