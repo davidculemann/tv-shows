@@ -2,7 +2,7 @@ import { Episode } from "./Episode";
 import episodes from "../episodes.json";
 import { useState } from "react";
 import { searchFilter } from "../utils/searchFilter";
-import Select from 'react-select'
+import { episodeCode } from "../utils/episodeCode";
 
 export function EpisodeGallery(): JSX.Element {
   const [search, setSearch] = useState("");
@@ -11,8 +11,12 @@ export function EpisodeGallery(): JSX.Element {
   return (
     <>
       <div className="search">
-        <Select className="select" options={options} />
-        Search episodes:&nbsp;
+        <select className="select">
+          {options.map((option) => (
+            <option value={option.name} key={option.id}>{episodeCode(option.season, option.number) + ' - ' + option.name}</option>
+          ))}
+        </select>
+        &nbsp;Search episodes:&nbsp;
         <input
           value={search}
           onChange={(event) => {
