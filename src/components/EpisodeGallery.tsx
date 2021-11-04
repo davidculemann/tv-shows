@@ -20,8 +20,8 @@ export function EpisodeGallery(): JSX.Element {
   useEffect(() => {
     fetch("https://api.tvmaze.com/shows/82/episodes")
       .then((response) => response.json())
-      .then((jsonBody: IEpisode[]) => setEpisodes(jsonBody))
-  }, [])
+      .then((jsonBody: IEpisode[]) => setEpisodes(jsonBody));
+  }, []);
 
   return (
     <>
@@ -44,7 +44,7 @@ export function EpisodeGallery(): JSX.Element {
         </button>
         &nbsp;Search episodes:&nbsp;
         <input
-          placeholder='search...'
+          placeholder="search..."
           style={{ height: 25 }}
           value={search}
           onChange={(event) => {
