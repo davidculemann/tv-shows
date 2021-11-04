@@ -24,7 +24,8 @@ export function Episode(episodeProps: IEpisode): JSX.Element {
   return (
     <div className="episode">
       <h2 style={{ textAlign: "center" }}>
-        {episodeProps.name} -{" "}
+        {episodeProps.name}
+        {" - "}
         {episodeCode(episodeProps.season, episodeProps.number)}
       </h2>
       <div style={{ textAlign: "center" }}>

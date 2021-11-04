@@ -8,18 +8,30 @@ export function EpisodeGallery(): JSX.Element {
   const [search, setSearch] = useState("");
   const options = episodes;
 
+  const clear = () => setSearch("");
+
   return (
     <>
+      {/* Search bar, clear button and select */}
       <div className="search">
-        <select className="select">
+        <select
+          className="select"
+          style={{ height: 25 }}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        >
           {options.map((option) => (
-            <option value={option.name} key={option.id}>
+            <option value={option.name} key={option.name}>
               {episodeCode(option.season, option.number) + " - " + option.name}
             </option>
           ))}
         </select>
+        <button onClick={clear} style={{ height: 25 }}>
+          reset
+        </button>
         &nbsp;Search episodes:&nbsp;
         <input
+          style={{ height: 25 }}
           value={search}
           onChange={(event) => {
             setSearch(event.target.value);
@@ -31,6 +43,7 @@ export function EpisodeGallery(): JSX.Element {
           out of {episodes.length} episodes
         </span>
       </div>
+      {/* Episode gallery */}
       <div className="gallery">
         <>
           {episodes
