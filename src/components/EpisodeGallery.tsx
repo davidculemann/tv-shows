@@ -8,19 +8,12 @@ export function EpisodeGallery(): JSX.Element {
   const [search, setSearch] = useState("");
   const [episodes, setEpisodes] = useState<IEpisode[]>([]);
 
-  // useEffect(() => {
-  //   const fetchEpisodes = () => {
-  //     fetch("https://api.tvmaze.com/shows/82/episodes")
-  //       .then((response) => response.json())
-  //       .then((jsonBody: IEpisode[]) => setEpisodes(jsonBody))
-  //   };
-  //   fetchEpisodes();
-  // }, [])
-
   useEffect(() => {
     fetch("https://api.tvmaze.com/shows/82/episodes")
       .then((response) => response.json())
       .then((jsonBody: IEpisode[]) => setEpisodes(jsonBody));
+
+    setSearch("");
   }, []);
 
   return (
