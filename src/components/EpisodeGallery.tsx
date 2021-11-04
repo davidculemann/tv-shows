@@ -1,14 +1,27 @@
-import { Episode } from "./Episode";
-import episodes from "../episodes.json";
-import { useState } from "react";
+import { Episode, IEpisode } from "./Episode";
+//import episodes from "../episodes.json";
+import { useEffect, useState } from "react";
 import { searchFilter } from "../utils/searchFilter";
 import { episodeCode } from "../utils/episodeCode";
 
 export function EpisodeGallery(): JSX.Element {
   const [search, setSearch] = useState("");
-  const options = episodes;
+  const [episodes, setEpisodes] = useState<IEpisode[]>([]);
 
-  const clear = () => setSearch("");
+  // useEffect(() => {
+  //   const fetchEpisodes = () => {
+  //     fetch("https://api.tvmaze.com/shows/82/episodes")
+  //       .then((response) => response.json())
+  //       .then((jsonBody: IEpisode[]) => setEpisodes(jsonBody))
+  //   };
+  //   fetchEpisodes();
+  // }, [])
+
+  useEffect(() => {
+    fetch("https://api.tvmaze.com/shows/82/episodes")
+      .then((response) => response.json())
+      .then((jsonBody: IEpisode[]) => setEpisodes(jsonBody))
+  }, [])
 
   return (
     <>
@@ -20,17 +33,18 @@ export function EpisodeGallery(): JSX.Element {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         >
-          {options.map((option) => (
+          {episodes.map((option) => (
             <option value={option.name} key={option.name}>
               {episodeCode(option.season, option.number) + " - " + option.name}
             </option>
           ))}
         </select>
-        <button onClick={clear} style={{ height: 25 }}>
+        <button onClick={() => setSearch("")} style={{ height: 25 }}>
           reset
         </button>
         &nbsp;Search episodes:&nbsp;
         <input
+          placeholder='search...'
           style={{ height: 25 }}
           value={search}
           onChange={(event) => {

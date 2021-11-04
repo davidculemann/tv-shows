@@ -2,7 +2,7 @@ import { episodeCode } from "../utils/episodeCode";
 import { summaryFix } from "../utils/summaryFix";
 import { imageURLFix } from "../utils/imageURLFix";
 
-interface IEpisode {
+export interface IEpisode {
   // id: number;
   // url: string;
   name: string;
