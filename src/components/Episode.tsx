@@ -21,23 +21,23 @@ export interface IEpisode {
   // _links: { self: { href: string } };
 }
 
-export function Episode(episodeProps: IEpisode): JSX.Element {
+export function Episode(props: IEpisode): JSX.Element {
   return (
     <div className="episode">
       <h2 style={{ textAlign: "center" }}>
-        {episodeProps.name}
+        {props.name}
         {" - "}
-        {episodeCode(episodeProps.season, episodeProps.number)}
+        {episodeCode(props.season, props.number)}
       </h2>
       <div style={{ textAlign: "center" }}>
         <img
-          src={imageURLFix(episodeProps.image.medium)}
-          alt={episodeProps.image.original}
+          src={imageURLFix(props.image.medium)}
+          alt={props.image.original}
           width="90%"
           height="auto"
         ></img>
       </div>
-      <p>{summaryFix(episodeProps.summary)}</p>
+      <p>{summaryFix(props.summary)}</p>
     </div>
   );
 }

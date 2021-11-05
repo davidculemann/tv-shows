@@ -4,17 +4,17 @@ import { useEffect, useState } from "react";
 import { searchFilter } from "../utils/searchFilter";
 import { episodeCode } from "../utils/episodeCode";
 
-export function EpisodeGallery(): JSX.Element {
+export function EpisodeGallery(url: string): JSX.Element {
   const [search, setSearch] = useState("");
   const [episodes, setEpisodes] = useState<IEpisode[]>([]);
 
   useEffect(() => {
-    fetch("https://api.tvmaze.com/shows/82/episodes")
+    fetch(url)
       .then((response) => response.json())
       .then((jsonBody: IEpisode[]) => setEpisodes(jsonBody));
 
     setSearch("");
-  }, []);
+  }, [url]);
 
   return (
     <>

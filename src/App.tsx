@@ -7,7 +7,7 @@ function App(): JSX.Element {
   return (
     <div>
       <Header />
-      <EpisodeGallery />
+      {EpisodeGallery("https://api.tvmaze.com/shows/82/episodes")}
       <Footer />
     </div>
   );
