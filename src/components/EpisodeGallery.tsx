@@ -4,68 +4,95 @@ import { useEffect, useState } from "react";
 import { searchFilter } from "../utils/searchFilter";
 import { episodeCode } from "../utils/episodeCode";
 
-export function EpisodeGallery(url: string): JSX.Element {
+export function EpisodeGallery(): JSX.Element {
   const [search, setSearch] = useState("");
+  const [selectedEpisode, setSelectedEpisode] = useState<IEpisode | null>(null);
   const [episodes, setEpisodes] = useState<IEpisode[]>([]);
+  const episodesToShow: IEpisode[] = selectedEpisode
+    ? [selectedEpisode]
+    : episodes.filter((epi) => searchFilter(epi, search));
 
   useEffect(() => {
-    fetch(url)
+    fetch("https://api.tvmaze.com/shows/82/episodes")
       .then((response) => response.json())
       .then((jsonBody: IEpisode[]) => setEpisodes(jsonBody));
 
     setSearch("");
-  }, [url]);
+  }, []);
+
+  function handleEpisodeSelected(id: string) {
+    const foundEpisode = episodes.find((episode) => episode.id === Number(id));
+    if (foundEpisode) {
+      setSelectedEpisode(foundEpisode);
+    } else {
+      setSelectedEpisode(null);
+    }
+  }
 
   return (
     <>
-      {/* Search bar, clear button and select */}
       <div className="search">
-        <select
-          className="select"
-          style={{ height: 25 }}
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        >
-          {episodes.map((option) => (
-            <option value={option.name} key={option.name}>
-              {episodeCode(option.season, option.number) + " - " + option.name}
-            </option>
-          ))}
-        </select>
-        <button onClick={() => setSearch("")} style={{ height: 25 }}>
-          reset
-        </button>
-        &nbsp;Search episodes:&nbsp;
-        <input
-          placeholder="search..."
-          style={{ height: 25 }}
-          value={search}
-          onChange={(event) => {
-            setSearch(event.target.value);
-          }}
-        />
-        &nbsp;{" "}
-        <span style={{ fontSize: "13px" }}>
-          showing {episodes.filter((epi) => searchFilter(epi, search)).length}{" "}
-          out of {episodes.length} episodes
-        </span>
-      </div>
-      {/* Episode gallery */}
-      <div className="gallery">
-        <>
-          {episodes
-            .filter((epi) => searchFilter(epi, search))
-            .map((episode) => (
-              <Episode
-                key={episode.name}
-                name={episode.name}
-                season={episode.season}
-                number={episode.number}
-                image={episode.image}
-                summary={episode.summary}
-              />
+        {/* =======================================================
+          Show select bar and clear button if selectedEpisode is not null*/}
+        {selectedEpisode ? (
+          <>
+            <button
+              onClick={() => setSelectedEpisode(null)}
+              style={{ height: 25 }}
+            >
+              Show all
+            </button>
+            <span style={{ fontSize: "13px" }}>
+              {" "}
+              showing 1 out of {episodes.length} episodes
+            </span>
+          </>
+        ) : (
+          <select
+            className="select"
+            style={{ height: 25 }}
+            onChange={(e) => handleEpisodeSelected(e.target.value)}
+            value={episodesToShow.length > 0 ? episodesToShow[0].id : ""}
+          >
+            {episodes.map((option) => (
+              <option value={option.id} key={option.id}>
+                {episodeCode(option.season, option.number) +
+                  " - " +
+                  option.name}
+              </option>
             ))}
-        </>
+          </select>
+        )}
+        {/* =======================================================
+          Show input bar if episode selection is empty (null) */}
+        {!selectedEpisode && (
+          <>
+            {" "}
+            Search episodes:{"  "}
+            <input
+              placeholder="search..."
+              style={{ height: 25 }}
+              value={search}
+              onChange={(event) => {
+                setSearch(event.target.value);
+              }}
+            />
+            &nbsp;{" "}
+            <span style={{ fontSize: "13px" }}>
+              showing{" "}
+              {episodes.filter((epi) => searchFilter(epi, search)).length} out
+              of {episodes.length} episodes
+            </span>
+          </>
+        )}
+      </div>
+
+      {/* =======================================================
+          Episode gallery */}
+      <div className="gallery">
+        {episodesToShow.map((episode) => (
+          <Episode episode={episode} key={episode.id} />
+        ))}
       </div>
     </>
   );

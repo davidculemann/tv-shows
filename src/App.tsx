@@ -5,9 +5,9 @@ import "./App.css";
 
 function App(): JSX.Element {
   return (
-    <div>
+    <div className="App">
       <Header />
-      {EpisodeGallery("https://api.tvmaze.com/shows/82/episodes")}
+      <EpisodeGallery />
       <Footer />
     </div>
   );
