@@ -34,9 +34,6 @@ img {
 .gallery {
   display: flex;
   flex-wrap: wrap;
-  /* display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20; */
 }
 
 .header {
@@ -58,5 +55,20 @@ img {
 
 .select {
   color: black;
-  font-size: 12px;
+  display: inline-block;
+  padding: 5px 5px;
+  line-height: 100%;
+}
+
+.input-bar {
+  color: black;
+  display: inline-block;
+  padding: 5px 5px;
+  line-height: 100%;
+}
+
+.show-picker {
+  margin-top: 10px;
+  font-size: 18px;
+  color: white;
 }
